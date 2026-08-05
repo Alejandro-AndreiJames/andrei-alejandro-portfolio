@@ -25,7 +25,7 @@ function Contact() {
 
             <div className="flex flex-col gap-3">
               <a
-                className="flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
+                className="glass flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
                 href="mailto:alejandroandreijames@gmail.com"
               >
                 <span className="flex items-center gap-3">
@@ -37,7 +37,7 @@ function Contact() {
               </a>
 
               <a
-                className="flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
+                className="glass flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
                 href="https://www.linkedin.com/in/andrei-james"
                 target="_blank"
                 rel="noreferrer"
@@ -51,7 +51,7 @@ function Contact() {
               </a>
 
               <a
-                className="flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
+                className="glass flex items-center justify-between rounded-2xl border border-border bg-surface p-5 text-foreground transition hover:border-accent hover:bg-accent-soft"
                 href="https://github.com/Alejandro-AndreiJames"
                 target="_blank"
                 rel="noreferrer"

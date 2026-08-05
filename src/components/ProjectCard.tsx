@@ -29,7 +29,7 @@ function ProjectCard({
 }: ProjectCardProps) {
   return (
     <motion.article
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface"
+      className="glass flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}

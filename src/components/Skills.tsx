@@ -128,7 +128,7 @@ function Skills() {
           {skillGroups.map((group) => (
             <article
               key={group.id}
-              className="rounded-2xl border border-border bg-surface p-6"
+              className="glass rounded-2xl border border-border bg-surface p-6"
             >
               <h3 className="flex items-center gap-2.5 font-semibold text-foreground">
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent-soft text-accent">

@@ -47,7 +47,7 @@ const responsibilities = [
               Growing through real-world software development.
             </h2>
   
-            <article className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+            <article className="glass rounded-2xl border border-border bg-surface p-6 sm:p-8">
               <div className="flex flex-col justify-between gap-4 sm:flex-row">
                 <div>
                   <h3 className="text-xl font-semibold text-foreground">

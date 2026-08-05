@@ -12,7 +12,7 @@ function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
 
   return (
     <button
-      className="inline-flex items-center gap-2 rounded-full border border-border bg-surface p-1.5 text-muted transition hover:border-border-strong"
+      className="glass inline-flex items-center gap-2 rounded-full border border-border bg-surface p-1.5 text-muted transition hover:border-border-strong"
       type="button"
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       aria-pressed={isDark}

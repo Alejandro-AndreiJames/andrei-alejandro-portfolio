@@ -48,7 +48,7 @@ const highlights = [
             {highlights.map((highlight) => (
               <li
                 key={highlight.label}
-                className="rounded-2xl border border-border bg-surface p-6"
+                className="glass rounded-2xl border border-border bg-surface p-6"
               >
                 <p className="text-sm text-subtle">{highlight.label}</p>
   
