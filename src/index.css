@@ -14,7 +14,12 @@
   --theme-accent: #0f766e;
   --theme-accent-soft: rgb(15 118 110 / 12%);
   --theme-accent-strong: #0b5f59;
-  --theme-glow: rgb(15 118 110 / 10%);
+  --theme-glow: rgb(15 118 110 / 14%);
+  --theme-grid: rgb(15 118 110 / 20%);
+  /* Blurred teal reads much weaker against a near-white page, so light mode needs more. */
+  --theme-orb: 0.46;
+  --theme-orb-soft: 0.34;
+  --theme-noise: 0.045;
 }
 
 .dark {
@@ -31,7 +36,11 @@
   --theme-accent: #5eead4;
   --theme-accent-soft: rgb(94 234 212 / 14%);
   --theme-accent-strong: #99f6e4;
-  --theme-glow: rgb(94 234 212 / 12%);
+  --theme-glow: rgb(94 234 212 / 16%);
+  --theme-grid: rgb(94 234 212 / 9%);
+  --theme-orb: 0.2;
+  --theme-orb-soft: 0.14;
+  --theme-noise: 0.06;
 }
 
 @theme inline {
@@ -53,6 +62,7 @@
   --color-accent-soft: var(--theme-accent-soft);
   --color-accent-strong: var(--theme-accent-strong);
   --color-glow: var(--theme-glow);
+  --color-grid: var(--theme-grid);
 }
 
 html {
@@ -66,10 +76,7 @@ body {
   min-height: 100vh;
   font-family: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  background:
-    radial-gradient(ellipse 80% 50% at 10% -10%, var(--theme-glow), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, var(--theme-glow), transparent 50%),
-    var(--theme-background);
+  background: var(--theme-background);
 }
 
 h1,
@@ -79,4 +86,24 @@ h3 {
     'Montserrat Variable', Montserrat, 'Inter Variable', ui-sans-serif,
     system-ui, sans-serif;
   font-optical-sizing: auto;
+}
+
+/* Faint blueprint grid, faded out toward the edges so it never competes with content. */
+.ambient-grid {
+  background-image:
+    linear-gradient(to right, var(--theme-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--theme-grid) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 40%,
+    #000 25%,
+    transparent 95%
+  );
+}
+
+/* Desaturated fractal grain that gives the flat background a little depth. */
+.ambient-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: var(--theme-noise);
 }
