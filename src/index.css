@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+
+:root {
+  --theme-background: #f6f8f8;
+  --theme-foreground: #152022;
+  --theme-muted: #4d5c5f;
+  --theme-subtle: #6b7a7d;
+  /* Lower alpha so teal orbs read through — 70%+ white reads as solid on light pages. */
+  --theme-surface: rgb(255 255 255 / 42%);
+  --theme-surface-muted: rgb(238 243 243 / 55%);
+  --theme-surface-hover: rgb(255 255 255 / 58%);
+  --theme-field: rgb(15 118 110 / 7%);
+  --theme-border: rgb(21 32 34 / 14%);
+  --theme-border-strong: rgb(21 32 34 / 28%);
+  --theme-chip: rgb(21 32 34 / 5%);
+  --theme-chip-border: rgb(21 32 34 / 16%);
+  --theme-glass-highlight: rgb(255 255 255 / 70%);
+  --theme-glass-shadow: 0 12px 34px -16px rgb(21 32 34 / 22%);
+  --theme-header: rgb(246 248 248 / 72%);
+  --theme-accent: #0f766e;
+  --theme-accent-soft: rgb(15 118 110 / 12%);
+  --theme-accent-strong: #0b5f59;
+  /* Blurred teal reads much weaker against a near-white page, so light mode needs more. */
+  --theme-orb: 0.68;
+  --theme-orb-soft: 0.58;
+  --theme-noise: 0.045;
+}
+
+.dark {
+  --theme-background: #071012;
+  --theme-foreground: #e8f1f1;
+  --theme-muted: #9eb0b3;
+  --theme-subtle: #6f8286;
+  --theme-surface: rgb(232 241 241 / 8%);
+  --theme-surface-muted: #10191b;
+  --theme-surface-hover: rgb(232 241 241 / 14%);
+  --theme-field: rgb(0 0 0 / 28%);
+  --theme-border: rgb(232 241 241 / 16%);
+  --theme-border-strong: rgb(232 241 241 / 34%);
+  --theme-chip: rgb(232 241 241 / 8%);
+  --theme-chip-border: rgb(232 241 241 / 20%);
+  --theme-glass-highlight: rgb(232 241 241 / 14%);
+  --theme-glass-shadow: 0 12px 34px -16px rgb(0 0 0 / 60%);
+  --theme-header: rgb(7 16 18 / 88%);
+  --theme-accent: #5eead4;
+  --theme-accent-soft: rgb(94 234 212 / 14%);
+  --theme-accent-strong: #99f6e4;
+  --theme-orb: 0.38;
+  --theme-orb-soft: 0.34;
+  --theme-noise: 0.06;
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    'Montserrat Variable', Montserrat, 'Inter Variable', ui-sans-serif,
+    system-ui, sans-serif;
+  --color-background: var(--theme-background);
+  --color-foreground: var(--theme-foreground);
+  --color-muted: var(--theme-muted);
+  --color-subtle: var(--theme-subtle);
+  --color-surface: var(--theme-surface);
+  --color-surface-muted: var(--theme-surface-muted);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+  --color-chip: var(--theme-chip);
+  --color-chip-border: var(--theme-chip-border);
+  --color-header: var(--theme-header);
+  --color-accent: var(--theme-accent);
+  --color-accent-soft: var(--theme-accent-soft);
+  --color-accent-strong: var(--theme-accent-strong);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  background: var(--theme-background);
+}
+
+h1,
+h2,
+h3 {
+  font-family:
+    'Montserrat Variable', Montserrat, 'Inter Variable', ui-sans-serif,
+    system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+
+/*
+ * Frosted panel. The saturate boost is what sells it: it intensifies the teal
+ * passing behind the card instead of letting the translucent fill wash it grey.
+ */
+.glass {
+  backdrop-filter: blur(22px) saturate(190%);
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
+  box-shadow:
+    inset 0 1px 0 var(--theme-glass-highlight),
+    var(--theme-glass-shadow);
+}
+
+/*
+ * Recessed inputs inside glass panels. Nested backdrop-filter rarely shows,
+ * so use a translucent tint that lets the parent frost read through.
+ */
+.field {
+  border: 1px solid var(--theme-border);
+  background-color: var(--theme-field);
+  box-shadow: inset 0 1px 0 var(--theme-glass-highlight);
+  color: var(--theme-foreground);
+}
+
+.field:focus {
+  border-color: var(--theme-accent);
+  background-color: color-mix(
+    in srgb,
+    var(--theme-field) 70%,
+    var(--theme-accent-soft)
+  );
+}
+
+.field::placeholder {
+  color: var(--theme-subtle);
+}
+
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--theme-foreground);
+  caret-color: var(--theme-foreground);
+  box-shadow: inset 0 0 0 1000px var(--theme-field);
+  transition: background-color 99999s ease-out;
+}
+
+.chip {
+  border: 1px solid var(--theme-chip-border);
+  background: var(--theme-chip);
+}
+
+/* Solid dark pill so GitHub reads as a CTA, not a tech chip. */
+.btn-github {
+  border: 1px solid transparent;
+  background: #0d1117;
+  color: #ffffff;
+}
+
+.btn-github:hover {
+  background: #21262d;
+}
+
+.dark .btn-github {
+  border-color: rgb(255 255 255 / 12%);
+  background: #010409;
+  color: #ffffff;
+}
+
+.dark .btn-github:hover {
+  border-color: rgb(255 255 255 / 22%);
+  background: #161b22;
+}
+
+.ambient-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: var(--theme-noise);
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      ;(() => {
+        const savedTheme = localStorage.getItem('theme')
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)',
+        ).matches
+        const theme =
+          savedTheme === 'light' || savedTheme === 'dark'
+            ? savedTheme
+            : prefersDark
+              ? 'dark'
+              : 'light'
+
+        document.documentElement.classList.toggle('dark', theme === 'dark')
+        document.documentElement.style.colorScheme = theme
+      })()
+    </script>
+    <meta
+      name="description"
+      content="Portfolio of Andrei James Alejandro, a software developer building accessible web and mobile applications."
+    />
+    <meta name="author" content="Andrei James Alejandro" />
+    <meta name="theme-color" content="#0f766e" />
+
+    <meta
+      property="og:title"
+      content="Andrei James Alejandro | Software Developer"
+    />
+    <meta
+      property="og:description"
+      content="Explore my software development experience, skills, and selected projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Andrei.dev" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1376" />
+    <meta property="og:image:height" content="768" />
+    <meta
+      property="og:image:alt"
+      content="Andrei James Alejandro — Software Developer"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Andrei James Alejandro | Software Developer"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore my software development experience, skills, and selected projects."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <title>Andrei James Alejandro | Software Developer</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
