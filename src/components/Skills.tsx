@@ -141,7 +141,7 @@ function Skills() {
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted transition hover:border-accent hover:text-foreground"
+                    className="chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-foreground transition hover:border-accent hover:bg-accent-soft"
                   >
                     <skill.Icon size={14} className="shrink-0" />
                     {skill.name}

@@ -5,23 +5,26 @@
   --theme-foreground: #152022;
   --theme-muted: #4d5c5f;
   --theme-subtle: #6b7a7d;
-  /* Translucent so the animated glow reads through the cards, same as dark mode. */
-  --theme-surface: rgb(255 255 255 / 38%);
-  --theme-surface-muted: #eef3f3;
-  --theme-surface-hover: rgb(255 255 255 / 62%);
-  --theme-border: rgb(255 255 255 / 70%);
-  --theme-glass-highlight: rgb(255 255 255 / 75%);
-  --theme-glass-shadow: 0 10px 30px -14px rgb(21 32 34 / 28%);
-  --theme-border-strong: #9bb0b3;
-  --theme-header: rgb(246 248 248 / 88%);
+  /* Lower alpha so teal orbs read through — 70%+ white reads as solid on light pages. */
+  --theme-surface: rgb(255 255 255 / 42%);
+  --theme-surface-muted: rgb(238 243 243 / 55%);
+  --theme-surface-hover: rgb(255 255 255 / 58%);
+  --theme-field: rgb(15 118 110 / 7%);
+  --theme-border: rgb(21 32 34 / 14%);
+  --theme-border-strong: rgb(21 32 34 / 28%);
+  --theme-chip: rgb(21 32 34 / 5%);
+  --theme-chip-border: rgb(21 32 34 / 16%);
+  --theme-glass-highlight: rgb(255 255 255 / 70%);
+  --theme-glass-shadow: 0 12px 34px -16px rgb(21 32 34 / 22%);
+  --theme-header: rgb(246 248 248 / 72%);
   --theme-accent: #0f766e;
   --theme-accent-soft: rgb(15 118 110 / 12%);
   --theme-accent-strong: #0b5f59;
   --theme-glow: rgb(15 118 110 / 14%);
   --theme-grid: rgb(15 118 110 / 20%);
   /* Blurred teal reads much weaker against a near-white page, so light mode needs more. */
-  --theme-orb: 0.46;
-  --theme-orb-soft: 0.34;
+  --theme-orb: 0.62;
+  --theme-orb-soft: 0.48;
   --theme-noise: 0.045;
 }
 
@@ -30,21 +33,24 @@
   --theme-foreground: #e8f1f1;
   --theme-muted: #9eb0b3;
   --theme-subtle: #6f8286;
-  --theme-surface: rgb(232 241 241 / 5%);
+  --theme-surface: rgb(232 241 241 / 8%);
   --theme-surface-muted: #10191b;
-  --theme-surface-hover: rgb(232 241 241 / 10%);
-  --theme-border: rgb(232 241 241 / 10%);
-  --theme-border-strong: rgb(232 241 241 / 28%);
-  --theme-glass-highlight: rgb(232 241 241 / 10%);
-  --theme-glass-shadow: 0 10px 30px -16px rgb(0 0 0 / 55%);
+  --theme-surface-hover: rgb(232 241 241 / 14%);
+  --theme-field: rgb(0 0 0 / 28%);
+  --theme-border: rgb(232 241 241 / 16%);
+  --theme-border-strong: rgb(232 241 241 / 34%);
+  --theme-chip: rgb(232 241 241 / 8%);
+  --theme-chip-border: rgb(232 241 241 / 20%);
+  --theme-glass-highlight: rgb(232 241 241 / 14%);
+  --theme-glass-shadow: 0 12px 34px -16px rgb(0 0 0 / 60%);
   --theme-header: rgb(7 16 18 / 88%);
   --theme-accent: #5eead4;
   --theme-accent-soft: rgb(94 234 212 / 14%);
   --theme-accent-strong: #99f6e4;
   --theme-glow: rgb(94 234 212 / 16%);
   --theme-grid: rgb(94 234 212 / 9%);
-  --theme-orb: 0.3;
-  --theme-orb-soft: 0.24;
+  --theme-orb: 0.38;
+  --theme-orb-soft: 0.34;
   --theme-noise: 0.06;
 }
 
@@ -60,8 +66,11 @@
   --color-surface: var(--theme-surface);
   --color-surface-muted: var(--theme-surface-muted);
   --color-surface-hover: var(--theme-surface-hover);
+  --color-field: var(--theme-field);
   --color-border: var(--theme-border);
   --color-border-strong: var(--theme-border-strong);
+  --color-chip: var(--theme-chip);
+  --color-chip-border: var(--theme-chip-border);
   --color-header: var(--theme-header);
   --color-accent: var(--theme-accent);
   --color-accent-soft: var(--theme-accent-soft);
@@ -111,11 +120,74 @@ h3 {
  * passing behind the card instead of letting the translucent fill wash it grey.
  */
 .glass {
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(190%);
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
   box-shadow:
     inset 0 1px 0 var(--theme-glass-highlight),
     var(--theme-glass-shadow);
+}
+
+/*
+ * Recessed inputs inside glass panels. Nested backdrop-filter rarely shows,
+ * so use a translucent tint that lets the parent frost read through.
+ */
+.field {
+  border: 1px solid var(--theme-border);
+  background-color: var(--theme-field);
+  box-shadow: inset 0 1px 0 var(--theme-glass-highlight);
+  color: var(--theme-foreground);
+}
+
+.field:focus {
+  border-color: var(--theme-accent);
+  background-color: color-mix(in srgb, var(--theme-field) 70%, var(--theme-accent-soft));
+}
+
+.field::placeholder {
+  color: var(--theme-subtle);
+}
+
+.field:-webkit-autofill,
+.field:-webkit-autofill:hover,
+.field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--theme-foreground);
+  caret-color: var(--theme-foreground);
+  box-shadow: inset 0 0 0 1000px var(--theme-field);
+  transition: background-color 99999s ease-out;
+}
+
+/* Filled chips / outline buttons that stay readable in both themes. */
+.chip {
+  border: 1px solid var(--theme-chip-border);
+  background: var(--theme-chip);
+}
+
+.btn-outline {
+  border: 1px solid var(--theme-chip-border);
+  background: var(--theme-chip);
+  box-shadow: inset 0 1px 0 var(--theme-glass-highlight);
+}
+
+/* GitHub action button: solid dark pill in both themes so it reads as a CTA, not a chip. */
+.btn-github {
+  border: 1px solid transparent;
+  background: #0d1117;
+  color: #ffffff;
+}
+
+.btn-github:hover {
+  background: #21262d;
+}
+
+.dark .btn-github {
+  border-color: rgb(255 255 255 / 12%);
+  background: #010409;
+  color: #ffffff;
+}
+
+.dark .btn-github:hover {
+  border-color: rgb(255 255 255 / 22%);
+  background: #161b22;
 }
 
 /* Desaturated fractal grain that gives the flat background a little depth. */

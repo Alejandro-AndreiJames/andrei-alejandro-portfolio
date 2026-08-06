@@ -87,7 +87,7 @@ const responsibilities = [
                 {technologies.map((technology) => (
                   <li
                     key={technology}
-                    className="rounded-full border border-border px-3 py-1 text-xs text-muted"
+                    className="chip rounded-full px-3 py-1 text-xs font-medium text-foreground"
                   >
                     {technology}
                   </li>
