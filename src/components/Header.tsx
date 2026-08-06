@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 import type { Theme } from './ThemeToggle'
@@ -18,6 +18,57 @@ type HeaderProps = {
 
 function Header({ theme, onToggleTheme }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  useEffect(() => {
+    const sectionIds = navigationLinks.map((link) => link.href.slice(1))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null)
+
+    if (sections.length === 0) {
+      return
+    }
+
+    const visibilityById = new Map<string, number>()
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          visibilityById.set(
+            entry.target.id,
+            entry.isIntersecting ? entry.intersectionRatio : 0,
+          )
+        }
+
+        let nextActive = ''
+        let highestRatio = 0
+
+        for (const id of sectionIds) {
+          const ratio = visibilityById.get(id) ?? 0
+          if (ratio > highestRatio) {
+            highestRatio = ratio
+            nextActive = `#${id}`
+          }
+        }
+
+        if (nextActive) {
+          setActiveSection(nextActive)
+        }
+      },
+      {
+        // Focus on the band under the sticky header where the reader is looking.
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      },
+    )
+
+    for (const section of sections) {
+      observer.observe(section)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   function toggleMenu() {
     setIsMenuOpen((currentValue) => !currentValue)
@@ -25,6 +76,20 @@ function Header({ theme, onToggleTheme }: HeaderProps) {
 
   function closeMenu() {
     setIsMenuOpen(false)
+  }
+
+  function linkClassName(href: string, isMobile = false) {
+    const isActive = activeSection === href
+
+    if (isMobile) {
+      return isActive
+        ? 'border-b border-border py-4 text-sm font-medium text-accent transition last:border-0'
+        : 'border-b border-border py-4 text-sm text-muted transition last:border-0 hover:text-accent'
+    }
+
+    return isActive
+      ? 'font-medium text-accent transition'
+      : 'text-muted transition hover:text-accent'
   }
 
   return (
@@ -41,12 +106,13 @@ function Header({ theme, onToggleTheme }: HeaderProps) {
           Andrei.dev
         </a>
 
-        <div className="hidden items-center gap-6 text-sm text-muted md:flex">
+        <div className="hidden items-center gap-6 text-sm md:flex">
           {navigationLinks.map((link) => (
             <a
               key={link.href}
-              className="transition hover:text-accent"
+              className={linkClassName(link.href)}
               href={link.href}
+              aria-current={activeSection === link.href ? 'true' : undefined}
             >
               {link.label}
             </a>
@@ -84,8 +150,9 @@ function Header({ theme, onToggleTheme }: HeaderProps) {
             {navigationLinks.map((link) => (
               <a
                 key={link.href}
-                className="border-b border-border py-4 text-sm text-muted transition last:border-0 hover:text-accent"
+                className={linkClassName(link.href, true)}
                 href={link.href}
+                aria-current={activeSection === link.href ? 'true' : undefined}
                 onClick={closeMenu}
               >
                 {link.label}

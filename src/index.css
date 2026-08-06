@@ -21,8 +21,8 @@
   --theme-accent-soft: rgb(15 118 110 / 12%);
   --theme-accent-strong: #0b5f59;
   /* Blurred teal reads much weaker against a near-white page, so light mode needs more. */
-  --theme-orb: 0.62;
-  --theme-orb-soft: 0.48;
+  --theme-orb: 0.68;
+  --theme-orb-soft: 0.58;
   --theme-noise: 0.045;
 }
 
