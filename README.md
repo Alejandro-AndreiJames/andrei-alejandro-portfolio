@@ -1,6 +1,6 @@
 # Andrei.dev
 
-Personal portfolio for **Andrei James Alejandro**, a software developer building accessible web and mobile applications.
+**Andrei James Alejandro**, a software developer building accessible web and mobile applications.
 
 **Live site:** [https://andrei-alejandro.vercel.app/](https://andrei-alejandro.vercel.app/)
 
