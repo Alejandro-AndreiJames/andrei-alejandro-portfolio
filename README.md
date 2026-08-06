@@ -2,6 +2,8 @@
 
 Personal portfolio for **Andrei James Alejandro**, a software developer building accessible web and mobile applications.
 
+**Live site:** [https://andrei-alejandro.vercel.app/](https://andrei-alejandro.vercel.app/)
+
 ## Stack
 
 - React 19 + TypeScript
@@ -20,6 +22,6 @@ npm run preview  # preview the production build
 npm run lint
 ```
 
-## Deploy notes
+## Deploy
 
-After deploying, update `og:image` and `twitter:image` in `index.html` to absolute URLs (for example `https://your-domain.com/og-image.png`) so social previews resolve correctly.
+Hosted on [Vercel](https://vercel.com). Pushes to `main` trigger a new production deploy.
