@@ -124,7 +124,13 @@ function Skills() {
           Technologies I use and continue to explore.
         </h2>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+        <p className="mt-6 max-w-2xl leading-7 text-muted">
+          A mix of languages, frameworks, and tools from school, work, and
+          personal projects, plus what I’m actively learning to keep growing as
+          a developer.
+        </p>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {skillGroups.map((group) => (
             <article
               key={group.id}
@@ -141,7 +147,7 @@ function Skills() {
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted transition hover:border-accent hover:text-foreground"
+                    className="chip inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-foreground transition hover:border-accent hover:bg-accent-soft"
                   >
                     <skill.Icon size={14} className="shrink-0" />
                     {skill.name}

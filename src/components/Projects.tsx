@@ -15,6 +15,7 @@ type Project = {
   role: string
   period: string
   description: string
+  outcome: string
   tech: string[]
   githubUrl: string
   liveUrl?: string
@@ -28,16 +29,11 @@ const projects: Project[] = [
     role: 'Full-Stack Developer',
     period: 'July 2026',
     description:
-      'A personal finance application for managing monthly budgets, category allocations, expenses, and spending analytics with secure authentication.',
-    tech: [
-      'ASP.NET Core MVC',
-      'C#',
-      'SQL Server',
-      'Identity',
-      'Bootstrap',
-    ],
-    githubUrl:
-      'https://github.com/Alejandro-AndreiJames/SpendiTrack-Web',
+      'People struggle to see where monthly money actually goes. I built SpendiTrack end to end — authentication, budgets, category limits, expenses, and spending analytics — so users can track and adjust spending in one place.',
+    outcome:
+      'Live full-stack finance app with secure auth and monthly analytics.',
+    tech: ['ASP.NET Core MVC', 'C#', 'SQL Server', 'Identity', 'Bootstrap'],
+    githubUrl: 'https://github.com/Alejandro-AndreiJames/SpendiTrack-Web',
     liveUrl: 'http://spenditrack.runasp.net',
     image: {
       src: spendiTrackImage,
@@ -50,7 +46,9 @@ const projects: Project[] = [
     role: 'Front-End Developer',
     period: 'July 2024 – December 2024',
     description:
-      'A faculty information, evaluation, and research repository designed with accessible workflows for elderly and non-technical users.',
+      'Faculty needed a clearer way to manage information, evaluations, and research records. I built accessible front-end workflows so elderly and non-technical users could complete tasks without friction.',
+    outcome:
+      'Accessibility-first faculty system used in a real campus context.',
     tech: ['Angular', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'MySQL'],
     githubUrl: 'https://github.com/Alejandro-AndreiJames/PUPTHRIS',
     image: {
@@ -64,7 +62,8 @@ const projects: Project[] = [
     role: 'Project Manager, Front-End Developer',
     period: 'April – July 2024',
     description:
-      'An interactive color analysis application providing personalized seasonal palettes and style recommendations through an engaging interface.',
+      'Choosing flattering colors is confusing for many people. I led planning and front-end work for an interactive color analysis app that turns user input into seasonal palettes and style recommendations.',
+    outcome: 'Shipped a guided color-analysis experience from concept to UI.',
     tech: ['Angular', 'Tailwind CSS', 'DaisyUI', 'Node.js', 'MySQL'],
     githubUrl: 'https://github.com/Alejandro-AndreiJames/HUEnique-V2',
     image: {
@@ -75,13 +74,13 @@ const projects: Project[] = [
   {
     id: 'wibs-depot',
     title: 'Wibs Depot',
-    role: 'Front-End Developer',
+    role: 'Project Manager, Front-End Developer',
     period: 'October 2023 – January 2024',
     description:
-      'An e-commerce platform featuring product browsing, shopping-cart management, profile updates, and order tracking.',
+      'Shoppers needed a simple path from browsing to checkout. I built the storefront UI for product browsing, cart management, profile updates, and order tracking on a PHP/MySQL e-commerce platform.',
+    outcome: 'Complete shopper flow from catalog through order tracking.',
     tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-    githubUrl:
-      'https://github.com/Alejandro-AndreiJames/WIBS-Depot-ecommerce',
+    githubUrl: 'https://github.com/Alejandro-AndreiJames/WIBS-Depot-ecommerce',
     image: {
       src: wibsDepotImage,
       alt: 'Wibs Depot e-commerce homepage highlighting secure payments, shipping, and handling features',
@@ -109,6 +108,7 @@ function Projects() {
               role={project.role}
               period={project.period}
               description={project.description}
+              outcome={project.outcome}
               tech={project.tech}
               githubUrl={project.githubUrl}
               liveUrl={project.liveUrl}

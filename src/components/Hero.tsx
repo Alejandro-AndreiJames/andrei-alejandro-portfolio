@@ -57,7 +57,7 @@ function Hero({
           </a>
 
           <a
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-accent-soft px-5 py-3 font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-surface-hover"
+            className="glass inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-5 py-3 font-semibold text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:bg-accent-soft hover:text-accent"
             href={resumeUrl}
             download
           >

@@ -11,6 +11,7 @@ type ProjectCardProps = {
   role: string
   period: string
   description: string
+  outcome: string
   tech: string[]
   githubUrl: string
   liveUrl?: string
@@ -22,6 +23,7 @@ function ProjectCard({
   role,
   period,
   description,
+  outcome,
   tech,
   githubUrl,
   liveUrl,
@@ -65,11 +67,13 @@ function ProjectCard({
 
         <p className="mt-4 leading-7 text-muted">{description}</p>
 
+        <p className="mt-3 text-sm font-medium text-accent">{outcome}</p>
+
         <ul className="mt-5 flex flex-wrap gap-2">
           {tech.map((technology) => (
             <li
               key={technology}
-              className="rounded-full border border-border px-3 py-1 text-xs text-muted"
+              className="chip rounded-full px-3 py-1 text-xs font-medium text-foreground"
             >
               {technology}
             </li>
@@ -78,7 +82,7 @@ function ProjectCard({
 
         <div className="mt-auto flex flex-wrap gap-3 pt-6">
           <a
-            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition hover:border-border-strong hover:bg-surface-hover"
+            className="btn-github inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition"
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
