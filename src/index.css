@@ -20,8 +20,6 @@
   --theme-accent: #0f766e;
   --theme-accent-soft: rgb(15 118 110 / 12%);
   --theme-accent-strong: #0b5f59;
-  --theme-glow: rgb(15 118 110 / 14%);
-  --theme-grid: rgb(15 118 110 / 20%);
   /* Blurred teal reads much weaker against a near-white page, so light mode needs more. */
   --theme-orb: 0.62;
   --theme-orb-soft: 0.48;
@@ -47,8 +45,6 @@
   --theme-accent: #5eead4;
   --theme-accent-soft: rgb(94 234 212 / 14%);
   --theme-accent-strong: #99f6e4;
-  --theme-glow: rgb(94 234 212 / 16%);
-  --theme-grid: rgb(94 234 212 / 9%);
   --theme-orb: 0.38;
   --theme-orb-soft: 0.34;
   --theme-noise: 0.06;
@@ -66,7 +62,6 @@
   --color-surface: var(--theme-surface);
   --color-surface-muted: var(--theme-surface-muted);
   --color-surface-hover: var(--theme-surface-hover);
-  --color-field: var(--theme-field);
   --color-border: var(--theme-border);
   --color-border-strong: var(--theme-border-strong);
   --color-chip: var(--theme-chip);
@@ -75,8 +70,6 @@
   --color-accent: var(--theme-accent);
   --color-accent-soft: var(--theme-accent-soft);
   --color-accent-strong: var(--theme-accent-strong);
-  --color-glow: var(--theme-glow);
-  --color-grid: var(--theme-grid);
 }
 
 html {
@@ -100,19 +93,6 @@ h3 {
     'Montserrat Variable', Montserrat, 'Inter Variable', ui-sans-serif,
     system-ui, sans-serif;
   font-optical-sizing: auto;
-}
-
-/* Faint blueprint grid, faded out toward the edges so it never competes with content. */
-.ambient-grid {
-  background-image:
-    linear-gradient(to right, var(--theme-grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--theme-grid) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(
-    ellipse 80% 70% at 50% 40%,
-    #000 25%,
-    transparent 95%
-  );
 }
 
 /*
@@ -140,7 +120,11 @@ h3 {
 
 .field:focus {
   border-color: var(--theme-accent);
-  background-color: color-mix(in srgb, var(--theme-field) 70%, var(--theme-accent-soft));
+  background-color: color-mix(
+    in srgb,
+    var(--theme-field) 70%,
+    var(--theme-accent-soft)
+  );
 }
 
 .field::placeholder {
@@ -156,19 +140,12 @@ h3 {
   transition: background-color 99999s ease-out;
 }
 
-/* Filled chips / outline buttons that stay readable in both themes. */
 .chip {
   border: 1px solid var(--theme-chip-border);
   background: var(--theme-chip);
 }
 
-.btn-outline {
-  border: 1px solid var(--theme-chip-border);
-  background: var(--theme-chip);
-  box-shadow: inset 0 1px 0 var(--theme-glass-highlight);
-}
-
-/* GitHub action button: solid dark pill in both themes so it reads as a CTA, not a chip. */
+/* Solid dark pill so GitHub reads as a CTA, not a tech chip. */
 .btn-github {
   border: 1px solid transparent;
   background: #0d1117;
@@ -190,7 +167,6 @@ h3 {
   background: #161b22;
 }
 
-/* Desaturated fractal grain that gives the flat background a little depth. */
 .ambient-noise {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
