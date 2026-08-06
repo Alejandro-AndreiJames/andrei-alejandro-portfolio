@@ -124,7 +124,13 @@ function Skills() {
           Technologies I use and continue to explore.
         </h2>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+        <p className="mt-6 max-w-2xl leading-7 text-muted">
+          A mix of languages, frameworks, and tools from school, work, and
+          personal projects, plus what I’m actively learning to keep growing as
+          a developer.
+        </p>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {skillGroups.map((group) => (
             <article
               key={group.id}
